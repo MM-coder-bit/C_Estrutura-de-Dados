@@ -13,7 +13,7 @@ int main()
     struct tipo_no *prim, *nova;
     prim = NULL;
     
-    while (varLocal>= 0)
+    while (varLocal >= 0)
     {
             
         if(!(nova = malloc(sizeof(struct tipo_no))))
@@ -26,12 +26,12 @@ int main()
         varLocal = nova->num; // Variavel verificando o While
         if (varLocal < 0)
         {
-            break;           // Sai do loop quando dor menor que 0
+            break;           // Sai do loop quando for menor que 0
         }
-        nova->prox = prim;   // Inserir novo nó na lista ligada
+        // Inserir novo nó na lista ligada
+        nova->prox = prim;   // Neste ponto o novo Nó recebe o endereço do endereço atual.
         prim = nova;
     }
-    
     nova = prim;
         while(nova != NULL)
         {
