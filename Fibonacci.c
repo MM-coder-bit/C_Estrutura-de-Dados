@@ -11,7 +11,7 @@ int main(void)
 int fib(int parm)
 {   
     // condição de parada
-    if (parm == 2 || parm == 1) // Para a recursão quando os elementos forem os dois primeiros indexs
+    if (parm == 2 || parm == 1) // Para a recursão quando os elementos forem os dois primeiros indexes
     {
         return 1;
     }
