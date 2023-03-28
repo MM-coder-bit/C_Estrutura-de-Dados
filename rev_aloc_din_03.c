@@ -28,7 +28,8 @@ int main(void)
      if (varLocal >= 0)
         {
            nova = insere_no(&head);
-           (nova->num) = varLocal; 
+           (nova->num) = varLocal;
+            mostrar_lista(head);
         }
    }
    //Passeio pela lista ligada
@@ -36,7 +37,7 @@ int main(void)
    return 0;
 }
 
-struct tipo_no *insere_no(struct tipo_no **parm)
+struct tipo_no *insere_no(struct tipo_no **parm) // **parm = recebe a referencia da memória
 {
     struct tipo_no *aux;
 
@@ -50,6 +51,7 @@ struct tipo_no *insere_no(struct tipo_no **parm)
     *parm = aux;
     return aux;    
 }
+
 void mostrar_lista(struct tipo_no *parm)
 {
    while(parm != NULL)
