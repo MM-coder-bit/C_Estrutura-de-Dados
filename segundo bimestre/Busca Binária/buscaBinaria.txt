@@ -1,0 +1,460 @@
+Campinas -> Estrutura de Dados (GECO_03S_147364) (Segunda - noite toda - 28 alunos)
+Apoio: https://www.cs.usfca.edu/~galles/visualization/Algorithms.html
+Representante de classe: 
+------------------------------------------------------------------------------------------
+==> Prova 1: 24/abr: ok  e Prova 2: 19/jun
+==> Prova Integrada: 05/jun
+------------------------------------------------------------------------------------------
+
+==> Roteiro para aula de 15/mai <==
+
+==> Árvores: 
+    -> conceito geral (raiz, folha, altura, caminho, profundidade ou nível) -------> 
+       Link: https://www.youtube.com/watch?v=WB8HDGcgiyY (5 min)
+	         https://www.youtube.com/watch?v=eiMMtyRBYCE (17 min) => 3:50
+			 
+==> Árvores binárias: 
+    -> estrutura para um nó -------------------------------------------------------> 
+	
+struct tpNo{
+   int valor;
+   struct tpNo *aptE;
+   struct tpNo *aptD;
+};
+//                 +---+---+---+        
+//                 | | | 3 | | |         
+//                 +-+-+---+-+-+        
+//                   /       \ 
+//                  /         \
+//       +---+---+---+      +---+---+---+
+//       | / | 1 | / |      | / | 5 | / |
+//       +---+---+---+      +---+---+---+
+//
+
+    -> conceito geral (criar/inserir/remover/destruir) ----------------------------> 
+    -> árvore binária ordenada ----------------------------------------------------> 
+	   https://people.ok.ubc.ca/ylucet/DS/BST.html
+	-> árvore binária de busca (ou pesquisa) --------------------------------------> 
+	   Link: https://www.youtube.com/watch?v=R4MkedkChmo (6 min)
+    
+	-> passeios (ou percurso) em árvore binária:
+	   Link: https://www.youtube.com/watch?v=gEbIUeg0tYM (9 min)
+       -> pré ordem (VED) ---------------------------------------------------------> 
+	   -> em ordem (EVD) ----------------------------------------------------------> 
+	   -> pós ordem (EDV) ---------------------------------------------------------> 
+	
+	Exemplo 1: função recursiva para passeio "em ordem" ---------------------------> 
+	Exercício 1: com a tecnologia atual é possível realizar busca binária em uma lista ligada? 
+	Exercício 2: função para passeio "em pré" ordem -------------------------------> 
+   Exercício 3: função para passeio "em pós" ordem -------------------------------> 
+	Exercício 4: em uma árvore binária comum, podemos efetuar a busca de um valor usando passeio em pós-ordem? Sim
+	Exercício 5: crie um programa para buscar em uma árvore binária comum um valor digitado pelo usuário
+	Exercício 6: crie um programa para contar todos os nós de uma árvore binária
+	Exercício 7: crie um programa para contar todos os nós de uma árvore até encontrar um valor digitado pelo usuário 
+	
+	Obs.: passeio em pós-ordem pode ser usado para representar notação polonesa. 
+	      Exemplo 1 2 + = 3
+
+
+------------------------------------------------------------------------------------------
+
+==> Roteiro para aula de 08/mai <==
+
+Correção da prova; lição do erro ------------------------------------------> ok
+
+Mostrar figura com curvas de custo computacional Big O  -------------------> ok
+
+Demonstrações de ordenação: https://www.cs.usfca.edu/~galles/visualization/Algorithms.html
+
+Algoritmo	               Tempo
+               Melhor      Médio       Pior
+Selection sort O(n^2)      O(n^2)      O(n^2)
+Bubble sort    O(n)        O(n^2)      O(n^2)
+Insertion sort O(n)        O(n^2)      O(n^2)
+Quick sort     O(n*log(n))  O(n*log(n))  O(n^2)
+Merge sort     O(n*log(n))  O(n*log(n))  O(n*log(n))
+
+
+-> Busca e custo de busca -------------------------------------------------> ok
+
+-> Busca Linear e a Busca Binária -----------------------------------------> ok
+
+-> Análise de tempo de execução e espaço ocupado
++----------------------------------------+								  
+| 1 | 5 | 3 | 7 | 2 | 6 | 4 | 8 | 0 | 12 |								  
++----------------------------------------+
+                                  
++----------------------------------------+								  
+| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 12 |								  
++----------------------------------------+
+
+Análise para busca sequencial     
+   Pior caso  : T(n) = n          
+   Melhor caso: T(n) = 1
+   Caso médio : (n + 1)/2
+
+Análise para busca binária
+   Pior caso  : T(n) = log2(n) = log(n)
+   Melhor caso: T(n) = 1
+   Caso médio: (1 + log(n)) / 2
+
+
+//Algoritmo iterativo para Busca Binária ou Pesquisa Binária
+//   BUSCA_BINARIA( V[], inic, fim, chave )
+//      int sup = fim-1 // limite superior (termina em um número a
+//                      // menos. 0 a 9 são 10 números)
+//      int meio
+//      enquanto( inic <= sup )
+//         meio = (inic + sup)/2;
+//         se chave == V[meio] então
+//              devolva meio
+//		   fimse
+//         se chave < V[meio] então
+//              sup = meio-1
+//         senão
+//              inic = meio+1
+//      fim_enquanto
+//      devolva -1   // não encontrado
+
+
+//Algoritmo recursivo para Busca Binária ou Pesquisa Binária 
+//   BUSCA_BINARIA_REC( V[], inic, fim, chave )
+//      MEIO recebe o índice entre início e fim
+//      se v[MEIO] == chave entao
+//          devolva MEIO   # elemento e encontrado
+//      fimse
+
+//      se inic == fim entao
+//          devolva -1 # elemento não encontrado
+//      senão
+//         se V[MEIO] < chave então
+//            faça a BUSCA_BINARIA_REC(V, MEIO+1, fim, chave)
+//         senão
+//            faça a BUSCA_BINARIA_REC(V, inic, MEIO-1, chave)
+//         fimse
+//      fimse
+
+Exercício 1: implementação iterativa (ou sequencial) ----------------------> 
+Exercício 2: implementação recursiva --------------------------------------> 
+Exercício 3: 
+
+//Programa para criar vetor grande e mostrar tempo decorrido
+#include <stdio.h>
+#include <time.h>
+
+int main(void) {
+   struct timeb start, end;
+   int contador, vetor1[500000], vetor2[500000], dif;
+	   
+   ftime(&start);	   
+   for(contador = 0; contador < 500000; contador++){
+      vetor1[contador] = rand();
+      vetor2[contador] = rand();
+   }
+   ftime(&end);
+   dif = (int) (1000.0 * (end.time - start.time) + (end.millitm - start.millitm));
+   printf("\nTempo gasto [selection_sort]: %d ms.\n", dif);
+   
+   return 0;
+}
+
+
+------------------------------------------------------------------------------------------
+==> Roteiro para aula de 01/mai <==
+
+Feriado: dia do trabalhador -----------------------------------------------> 
+
+------------------------------------------------------------------------------------------
+==> Roteiro para aula de 24/abr <==
+
+Prova 1 -------------------------------------------------------------------> ok
+
+------------------------------------------------------------------------------------------
+==> Roteiro para aula de 17/abr <==
+ 
+Revisão para prova --------------------------------------------------------> ok
+
+------------------------------------------------------------------------------------------
+==> Roteiro para aula de 10/abr <==
+
+Verif notação polonesa invertida ------------------------------------------> ok
+
+Filas ---------------------------------------------------------------------> ok
+
+Definindo os tipos básicos:
+#define TRUE 1
+#define FALSE 0
+
+//Cria campos da FILA
+struct camposNo{
+   int valor;
+   struct camposNo *prox;
+   struct camposNo *inicio, *fim;
+};
+int filaVazia( struct camposNo *fl){
+   if( fl->inicio == NULL ){
+      return TRUE;
+   }else{
+      return FALSE;
+   }
+}
+
+
+//                  pri-+                        +-ult      
+//                      |                        |
+//                     \/                       \/
+//                    +---+--+    +---+--+    +---+--+
+//                    | 3 | -+--->| 5 | -+--->| 2 | /| 
+//                    +---+--+    +---+--+    +---+--+
+
+    -> conceito geral (FIFO: First In First Out) ==========> 
+	   Link: https://www.youtube.com/watch?v=QCb6k2nik5k (10 min)
+    -> estrutura de nós ===================================> 
+	-> operações:
+       inserir() ==========================================> 
+	   retirar() ==========================================> 
+	   isEmpty() ==========================================> 
+    -> exercício 3: criar fila com quantidade randômica de elementos (max 20).
+	                Mostre a quantidade de elementos e os elementos criados.
+    -> exercício 4: criar fila com quantidade randômica de elementos (max 20).
+	                mostrar os elementos desta fila e resetar a fila.
+			
+
+------------------------------------------------------------------------------------------
+==> Roteiro para aula de 03/abr <==
+
+Pilhas --------------------------------------------------------------------> ok
+
+==> Pilhas LIFO (Last In First Out):
+//                    +---+--+  
+//              topo->| 3 | ||   
+//                    +---+-++  
+//                          |
+//                         \/
+//                    +---+--+  
+//                    | 5 | |+ 
+//                    +---+-++  
+//                          |
+//                         \/
+//                    +---+--+
+//                    | 2 | /+ 
+//                    +---+--+
+
+    -> conceito geral (LIFO: Last In First Out) ---------------------------> ok
+	   Link: https://www.youtube.com/watch?v=2V91Re1czwA (7 min)
+    -> estrutura de nós ---------------------------------------------------> ok
+	-> operações:
+       push(e) - empilhar()------------------------------------------------> ok
+	   pop():e - desempilhar() --------------------------------------------> ok
+	   top():e - topo() ---------------------------------------------------> ok
+	   isEmpty():bool - pilhaVazia() -------------------------------------->  ok
+	-> exercício 1: criar pilha com quantidade randômica de elementos (max 20). 
+	                Mostre a quantidade de elementos e os elementos criados.
+    -> exercício 2: criar pilha com quantidade randômica de elementos (max 20). 
+	                Mostrar os elementos desta pilha e resetar a pilha (topo = null e free(?))
+
+    -> Ex.1: Usando uma pilha como apoio, calcular e mostrar o resultados -> 
+	         das seguintes expressões em notação polonesa:
+			 a) 2, 3, +
+			 b) 5, 7, 2, -, *
+             c) 3, 1, -, 7, +
+             d) 8, 2, /, 3, +
+             e) 2, 8, /, 3, +			 
+
+------------------------------------------------------------------------------------------
+==> Roteiro para aula de 27/mar <==
+
+   2) Criar função para percorer uma lista ligada -------------------------> ok
+   
+   3) Criar função para inserir um nó em uma lista (simplesmente) ligada --> ok
+      Obs.1: inserir no começo da lista, ao lado do apontador da cabeça (head)
+	  Obs.2: função deve devolve o endereço do novo nó 	  
+
+   4) Criar função para procurar uma informação em uma lista ligada -------> ok
+   5) Criar função para remover um nó de uma lista ligada -----------------> ok
+
+
+------------------------------------------------------------------------------------------
+==> Roteiro para aula de 20/mar <== 
+
+Ordenação ineficiente -----------------------------------------------------> ok
+
+Bubble sort:
+//   flag_troca = true
+//   enquanto( ocorrer troca (flag_troca == true) )
+//      flag_troca = false
+//      para(n variando de inic a fim-1 do vetor)
+//	       se v[n] > v[n+1] entao
+//		      flag_troca = true
+//		      troca v[n] com v[n+1]
+//		   fim_se
+//      fim_para		 
+//   fim_enquanto
+
+-> TAD: tipo abstrato de dados
+-> estruturas (dinâmicas) de dados lineares -------------------------------> ok
+   -> tipos de listas: simplesmente encadeadas, duplamente encadeadas, circulares
+   -> operações fundamentais de manipulação dos dados: inclusão, consulta e remoção de dados
+
+-> exercícios:
+   1) Criar estrutura para inserir um nó de uma lista ligada -------------> ok
+        Estrutura autorreferenciada
+        Referência recursiva
+
+   2) Criar função para percorer uma lista ligada -------------------------> ok
+   
+   3) Criar função para inserir um nó em uma lista (simplesmente) ligada --> 
+      Obs.1: inserir no começo da lista, ao lado do apontador da cabeça (head)
+	  Obs.2: função deve devolve o endereço do novo nó 	  
+
+   4) Criar função para procurar uma informação em uma lista ligada -------> 
+   5) Criar função para remover um nó de uma lista ligada -----------------> 
+
+------------------------------------------------------------------------------------------
+==> Roteiro para aula de 13/mar <== 
+
+Obs.: Paramos no programa exemplo de parâmetro por valor e por referência
+
+Função com parâmetros passados por valor e referência ---------------> ok
+
+Função com parâmetros: vetor de estrutura ---------------------------> ok
+//Programa para criar uma função com parâmetro em forma de vetor
+//(por referência porque vetor é um apontador disfarçado)
+//Lembre-se de passar o apontador para o vetor e seu tamanho
+
+Ordenação ineficiente -----------------------------------------------> ok
+Selection sort:
+//      para( ext_N variando de inic a fim-1 do vetor )
+//         para( int_N variando de ext_N+1 a fim do vetor)
+//	          se v[ext_N] > v[int_N] entao
+//		         troca v[ext_N] com v[int_N]
+//		      fim_se
+//         fim_para
+//      fim_para	
+
+Bubble sort:
+//   flag_troca = true
+//   enquanto( ocorrer troca (flag_troca == true) )
+//      flag_troca = false
+//      para(n variando de inic a fim-1 do vetor)
+//	       se v[n] > v[n+1] entao
+//		      flag_troca = true
+//		      troca v[n] com v[n+1]
+//		   fim_se
+//      fim_para		 
+//   fim_enquanto
+
+
+------------------------------------------------------------------------------------------
+==> Roteiro para aula de 06/mar <== Revisão sobre recursividade e alocação dinâmica
+
+Usuário deve digitar qtd desconhecida de valores --------------------> ok
+Mostrar a lista ligada usando função --------------------------------> ok
+
+-> Recursão ---------------------------------------------------------> ok
+   Função recursiva (auto invocada) precisa de dois requisitos:
+   1) Controle de parada
+   2) Nova chamada recursiva reduzindo o problema
+
+Exemplos:
+Fatorial: N * (N-1) * (N-2) * ... * 3 * 2 * 1  ----------------------> ok
+Fibonacci: 1, 1, 2, 3, 5, 8, 13, 21, 34, ..., N = (N-2)+(N-1) -------> 
+
+Ex.1: mostre lista do exercício de revisão com função recursiva -----> 
+
+
+Lista de material
++----+-----+---------+--------+
+|Pai | Cod | Descr   | Preco  |
++----+-----+---------+--------+
+| 0  | 1   | Carro   |  50K   |
+| 1  | 2   | Chassi  |  1K    |
+| 1  | 3   | Motor   |  3K    |
+| 1  | 4   | Câmbio  |  2K    |
+| 3  | 5   | Cabeçote| 100    |
+| 3  | 6   | Pistão  |  20    |
+...
+0 => nulo
+
+Relotório: Pistão(6): Motor(3): Carro(1)  
+
+Exercício 1: 
+Apresente uma especificação em Português Estruturado para uma função que mostre
+todos os ancestrais de qualquer elemento solicitado pelo usuário.
+
+Resp.: 
+int percorreListaMaterial( int codigo ){
+   //1- Critério de parada
+   se o código for 0 então retorna 0
+   //2- Mostra a Descr do código atual e chama percorreListaMaterial( Pai )
+}
+
+-> Função sem parâmetros --------------------------------------------> ok
+-> Função com parâmetros passados por valor -------------------------> ok
+-> Função com parâmetros passados por referência --------------------> ok
+-> Função com parâmetros struct por referência ----------------------> 
+-> Função com parâmetros: vetor homogêneo ---------------------------> 
+-> Função com parâmetros: vetor heterogêneo (estrutura) -------------> 
+
+------------------------------------------------------------------------------------------
+==> Roteiro para aula de 27/fev <== Revisão sobre recursividade e alocação dinâmica
+
+-> Rever variáveis compostas heterogêneas (vetor de registros) ------> ok
+
+-> Alocação estática x dinâmica -------------------------------------> ok
+   Ponteiros.pdf 
+
+   Alocação dinâmica de estruturas compostas heterogêneas (única) => referência estática é "." e referência dinâmica é "->"
+
+   Alocação dinâmica de estruturas compostas heterogêneas (vetor) => "(*aptAluno)." => "aptAluno->"
+  
+Obs.: paramos no ex de usuário digitar qtd desconhecida de valores
+
+------------------------------------------------------------------------------------------
+==> Roteiro para aula de 20/fev <== Recesso de Carnaval
+
+------------------------------------------------------------------------------------------
+==> Roteiro para aula de 13/fev <== Acolhida e revisão
+
+-> Recepção dos alunos ----------------------------------------------> ok
+-> Mostrar Plano de Ensino ------------------------------------------> ok
+-> Chamada ----------------------------------------------------------> ok
+
+int main(void)-> Rever estruturas de decisão (if) ---------------------------------> ok
+-> Rever estruturas de controle de repetições contáveis (for) -------> ok
+-> Rever variáveis compostas homogêneas (vetores) -------------------> ok
+-> Rever alocação dinâmica de memória -------------------------------> ok
+
+Vídeos ==> Khan Academy: https://www.youtube.com/user/KhanAcademyPortugues/videos
+
+//Desfio 1
+//Programa para ler a quantidade (qtd) de linhas e mostrar um retangulo de asteriscos
+//sendo qtd *s na primeira linha, qtd *s na segunda etc
+//Digite qtd de linhas: [4]
+//****
+//****
+//****
+//****
+
+Obs.: tentar com apenas um for()
+
+--> Desafio 2 
+//Programa para ler a quantidade de linhas e mostrar um triangulo de asteriscos
+//sendo 1 * na primeira linha, 2 na segunda, 3 na terceira etc
+//Exemplo: Digite qtd de linhas: [4]
+//*
+//**
+//***
+//****
+
+Obs.: tentar com apenas um for()
+
+//  Ex3. Revisão de alocação dinâmica de memória
+// Elabore um programa em C para descobrir a quantidade máxima de variáveis
+// que pode ser criada com a seguinte estrutura:
+// struct tipo_simples{
+//    int num;
+// };
+
+Obs.: transformar em lista
+
