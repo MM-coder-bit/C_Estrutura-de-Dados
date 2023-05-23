@@ -5,12 +5,17 @@ struct tipoNo
    int valor;
    struct tipoNo *esq, *dir;
 };
+
 struct tipoNo* criaNo( int vlr );
 void mostraArvEmOrdem( struct tipoNo *pai );
 void mostraArvEmPreOrdem( struct tipoNo *pai ); // VED
-void mostraArvEmPosOrdem( struct tipoNo *pai );// VED
+void mostraArvEmPosOrdem( struct tipoNo *pai ); // VED
 
 int contagem(struct tipoNo *pai);
+int soma(struct tipoNo *pai);
+
+float media(int contagem, int soma);
+void NoMaiorMedia(struct tipoNo *pai,float media);
 
 int main(void)
 {
@@ -22,7 +27,7 @@ int main(void)
    for( pos = 0; pos < qtdNumeros; pos++)
    {
       printf("Digite um numero: ");
-      scanf("%d", &num);     
+      scanf("%d", &num);
       pai = arv;
       filho = arv;
       while( (filho != NULL) && (num != filho->valor) )
@@ -90,6 +95,12 @@ int main(void)
    mostraArvEmPosOrdem(arv);
 
    printf("Contagem: %d\n",contagem(arv));
+   printf("Soma: %d\n",soma(arv));
+
+   float med = media(contagem(arv),soma(arv));
+   printf("Média: %.1f\n",med);
+
+   NoMaiorMedia(arv,med);
 
    return 0;
 }
@@ -108,7 +119,7 @@ struct tipoNo* criaNo( int vlr
    noAux->dir = NULL;
    return noAux; //Se chegou ateh aqui eh porque foi tudo bem
 };
-void mostraArvEmOrdem( struct tipoNo *pai )
+void mostraArvEmOrdem( struct tipoNo *pai ) // EVD
 {
    if( pai != NULL )
    {
@@ -146,3 +157,34 @@ int contagem( struct tipoNo *pai )// Contagem
    }
      return 0;
 }
+
+int soma( struct tipoNo *pai )// Soma
+{
+   if( pai != NULL )
+   {
+     return(pai->valor + soma(pai->esq) + soma(pai->dir));
+   }
+     return 0;
+}
+
+float media(int contagem,int soma)
+{
+   float media=0;
+   media = soma/ (float)contagem;
+
+   return media;
+}
+
+void NoMaiorMedia(struct tipoNo *pai,float media)
+{
+      if( pai != NULL )
+      {
+         if (pai->valor >= media)
+         {
+            printf("no: %d\n",pai->valor);
+         }
+      NoMaiorMedia(pai->esq,media);
+      NoMaiorMedia(pai->dir,media);
+      }
+}
+
