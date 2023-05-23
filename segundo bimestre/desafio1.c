@@ -15,6 +15,8 @@
 //      fim_enquanto
 //      devolva -1   // não encontrado
 
+// Desafio para  encontra o valor desejado por busca binária
+
 #include <stdio.h>
 #include <sys/timeb.h>
 #include <math.h>
